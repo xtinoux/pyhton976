@@ -1,6 +1,6 @@
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
- 
+
 
 exif_tag_fr = {
  11: 'ProcessingSoftware',
@@ -272,18 +272,18 @@ def lattitude(img_path):
 	    TAGS[k]: v
 	    for k, v in img._getexif().items()
 	    if k in TAGS
-	} 
+	}
 	gpsinfo = exifd["GPSInfo"]
 	gpsd = {
 	    GPSTAGS[k]: v
 	    for k, v in exifd["GPSInfo"].items()
 	    if k in GPSTAGS
-	} 
-	 
+	}
+
 	return gpsd["GPSLatitude"]
 
 def longitude(img_path):
-		"""
+	"""
 	Fonction qui prend en paramètre le chemin d'une image
 	et renvoie la longitude en degré minute seconde.
 
@@ -293,14 +293,14 @@ def longitude(img_path):
 	    TAGS[k]: v
 	    for k, v in img._getexif().items()
 	    if k in TAGS
-	} 
+	}
 	gpsinfo = exifd["GPSInfo"]
 	gpsd = {
 	    GPSTAGS[k]: v
 	    for k, v in exifd["GPSInfo"].items()
 	    if k in GPSTAGS
-	} 
-	 
+	}
+
 	return gpsd["GPSLongitude"]
 
 # lat_d = lat[0][0] + lat[1][0]/60 + lat[2][0] /(36*10**len(str(lat[2][0])))
