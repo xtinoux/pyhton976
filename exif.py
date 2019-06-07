@@ -282,13 +282,13 @@ def lattitude(img_path):
 	 
 	return gpsd["GPSLatitude"]
 
-def longitude(img):
+def longitude(img_path):
 		"""
 	Fonction qui prend en paramètre le chemin d'une image
 	et renvoie la longitude en degré minute seconde.
 
 	"""
-		img = Image.open(img_path)
+	img = Image.open(img_path)
 	exifd = {
 	    TAGS[k]: v
 	    for k, v in img._getexif().items()
