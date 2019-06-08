@@ -2,11 +2,15 @@
 
 import exif
 
-# latitude et longitude de la photo
-lat = exif.latitude("photos/photo2.jpg")
-lon = exif.longitude("photos/photo2.jpg")
+# pour les 3 photos
+for index in range(3):
+  photo = "photos/photo{}.jpg".format(index)
+  # latitude et longitude de la photo
+  lat = exif.latitude(photo)
+  lon = exif.longitude(photo)
 
-if lat == None or lon == None:
-  print("Pas de coordonnées géographiques pour cette photo.")
-else:
-	print(lat, lon)
+  # affiche les coordonnees si elles existent
+  if lat == None or lon == None:
+ 	  print(photo, "Pas de coordonnées géographiques pour cette photo.")
+  else:
+	  print(photo, lat, lon)
