@@ -1,6 +1,7 @@
 # Objectif : classer les photos qui sont sur Mayotte ou non
 
 import exif
+import folium
 
 # liste avec uniquement les photos situees a Mayotte
 liste_mayotte = []
@@ -22,3 +23,6 @@ for index in range(3):
       liste_mayotte.append(photo)
 
 print("Nombre de photos à Mayotte :", len(liste_mayotte))
+
+m = folium.Map(location=[-12.83,45.15], zoom_start=11)
+m.save('map.html')
