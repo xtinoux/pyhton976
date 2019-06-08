@@ -3,12 +3,10 @@
 import exif
 import folium
 
-def afficher_un_point(map, img_path):
-  lat = exif.latitude(photo)
-  lon = exif.longitude(photo)
+def add_marker(map, name, location):
   folium.Marker(
-    location=[lat, lon],
-    popup=img_path,
+    location=location,
+    popup=name,
     icon=folium.Icon(icon='picture')
   ).add_to(m)
 
@@ -29,13 +27,13 @@ for index in range(3):
     print(photo, lat, lon)
     # si les coordonnees correspondent a Mayotte
     if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:
-      liste_mayotte.append(photo)
+      liste_mayotte.append((photo, [lat, lon]))
 
 print("Nombre de photos à Mayotte :", len(liste_mayotte))
 
 m = folium.Map(location=[-12.83,45.15], zoom_start=11)
 
 for photo in liste_mayotte:
-  afficher_un_point(m, photo)
+  add_marker(m, photo[0], photo[1])
 
 m.save('map.html')
