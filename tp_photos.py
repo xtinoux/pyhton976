@@ -3,6 +3,15 @@
 import exif
 import folium
 
+def afficher_un_point(map, img_path):
+  lat = exif.latitude(photo)
+  lon = exif.longitude(photo)
+  folium.Marker(
+    location=[lat, lon],
+    popup=img_path,
+    icon=folium.Icon(icon='picture')
+  ).add_to(m)
+
 # liste avec uniquement les photos situees a Mayotte
 liste_mayotte = []
 
@@ -25,4 +34,8 @@ for index in range(3):
 print("Nombre de photos à Mayotte :", len(liste_mayotte))
 
 m = folium.Map(location=[-12.83,45.15], zoom_start=11)
+
+for photo in liste_mayotte:
+  afficher_un_point(m, photo)
+
 m.save('map.html')
