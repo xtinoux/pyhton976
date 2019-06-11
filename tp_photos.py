@@ -3,12 +3,12 @@
 import exif
 import folium
 
-def add_marker(map, name, location):
+def add_marker(my_map, name, location):
   folium.Marker(
     location=location,
     popup=name,
     icon=folium.Icon(icon='picture')
-  ).add_to(m)
+  ).add_to(my_map)
 
 # liste avec uniquement les photos situees a Mayotte
 liste_mayotte = []

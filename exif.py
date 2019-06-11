@@ -60,8 +60,8 @@ def longitude(img_path):
 
 
 if __name__ == '__main__':
-	print(latitude('photos/1.jpg'))
-	print(longitude('photos/1.jpg'))
+	print(latitude('photos/photo0.jpg'))
+	print(longitude('photos/photo0.jpg'))
 # lat_d = lat[0][0] + lat[1][0]/60 + lat[2][0] /(36*10**len(str(lat[2][0])))
 # lon_d = lon[0][0] + lon[1][0]/60 + lon[2][0] /(36*10**len(str(lon[2][0])))
 # print(lat_d)
