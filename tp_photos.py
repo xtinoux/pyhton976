@@ -6,7 +6,7 @@ import folium
 def add_marker(my_map, name, location):
   folium.Marker(
     location=location,
-    popup=name,
+    popup=f"<img src='{name}' alt='{name}' height=250px width=250px/>",
     icon=folium.Icon(icon='picture')
   ).add_to(my_map)
 
