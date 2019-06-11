@@ -9,7 +9,7 @@ def _convert_exifGPs_to_decimal(value):
     au format décimal
 
 	:: entrée (tuple) : Tuple issue des données EXIF
-	:: sortie (float) : Valeur décimale 
+	:: sortie (float) : Valeur décimale
 	"""
     d = value[0][0] / value[0][1]
     m = value[1][0] / value[1][1]
@@ -24,15 +24,19 @@ def latitude(img_path):
 	et renvoie la latidude en degré minute seconde.
 
 	:: entrée (str) : Chemin du vers la photo
-	:: sortie (float) : Latitude décimale 
+	:: sortie (float) : Latitude décimale
 	"""
 	img = Image.open(img_path)
-	gpsinfo = img._getexif()[34853]
-	latitude = _convert_exifGPs_to_decimal(gpsinfo[2])
-	if gpsinfo[1] == 'S':
-		return -1*latitude
-	return latitude
-
+	data = img._getexif()
+	if data:
+		try:
+			gpsinfo = data[34853]
+			latitude = _convert_exifGPs_to_decimal(gpsinfo[2])
+			if gpsinfo[1] == 'S':
+				return -1*latitude
+			return latitude
+		except KeyError:
+		  return None
 
 def longitude(img_path):
 	"""
@@ -40,14 +44,19 @@ def longitude(img_path):
 	et renvoie la longitude.
 
 	:: entrée (str) : Chemin du vers la photo
-	:: sortie (float) : Longitude décimale 
+	:: sortie (float) : Longitude décimale
 	"""
 	img = Image.open(img_path)
-	gpsinfo = img._getexif()[34853]
-	longitude = _convert_exifGPs_to_decimal(gpsinfo[4])
-	if gpsinfo[3] == 'E':
-		return -1*longitude
-	return longitude
+	data = img._getexif()
+	if data:
+		try:
+			gpsinfo = data[34853]
+			longitude = _convert_exifGPs_to_decimal(gpsinfo[4])
+			if gpsinfo[3] == 'W':
+				return -1*longitude
+			return longitude
+		except KeyError:
+		  return None
 
 
 if __name__ == '__main__':
