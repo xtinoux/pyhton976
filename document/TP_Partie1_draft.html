@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+	<h1> Où sont mes photos de Mayotte <br><span>TP  Python</span></h1>
+	<div class="mission">
+		<h2>Mission 1 : <br> <span>Obtenir la latitude d'une photographie</span></h2>
+		<div class="mission-text">
+			Vous allez devoir obtenir la latitude de la photographie 1.jpg à l'aide du module geolocalisation.py
+		</div>
+		<div class="grandesLignes btn" >
+			<div class="wrapper invisible">
+				<ul>
+					<li>Importer le <strong>module</strong> exif</li>
+					<li>Visualiser son contenu</li>
+					<li>Appeller l'aide de la fonction latitude </li>
+					<li>Afficher la latitude de la fonction la photographie 1.jpg</li>
+				</ul>
+			</div>
+		</div>
+		<div class="pasApas btn">
+			<div class="wrapper invisible">
+				Pour utiliser l'<strong>interpreteur</strong> python
+				<ul>
+					<li>On ouvre une console </li>
+					<ul>
+						<li><img src="src/images/touche_windows.png" alt="" height="32"> + r
+						</li>
+						<li>Taper cmd
+						</li>
+					</ul>
+					<li>Dans la console, taper :</li>
+					<li>python</li>
+				</ul>
+				<ul>
+					<li>Importer le module exif</li>
+					<li>
+						import exif
+					</li>
+
+					<li>
+						Pour voir son contenu, on peut taper :
+					</li>
+					<li class="python">exif.__dir__()
+					</li>
+
+					<li>Pour afficher l'aide sur la fonction latitude :
+					</li>
+					<li  class="python">help(exif.latitude)
+					</li>
+					<li>
+						Lire la latitude d'une photo
+					</li>
+					<li  class="python">
+						latitude("photos/photo1.jpg")
+					</li>
+
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="mission">
+		<h2>Mission 2 :<br> <span> Gérer le cas des photographies sans données GPS</span></h2>
+		<div class="mission-text">
+			Certaines photographies n'ont pas de données GPS :( <br>
+			A l'appel de la fonction lattitude ou longitude, on obtient une erreur. <br>
+			Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.
+		</div>
+		<div class="grandesLignes btn">
+			<div class="wrapper invisible">
+				<ul>
+					<li>Sauvegarder les valeurs de la latitude et de la longitude de la photo dans des variables,</li>
+					<li>Utiliser une instruction conditionnelle, pour afficher le chemin de la photo suivi du texte <br> "Pas de coordonnées géographiques pour cette photo." si l'une des variables vaut None,</li>
+					<li>Sinon afficher le chemin de la photo, suivi de sa latitude et de sa longitude.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="pasApas btn">
+			<div class="wrapper invisible">
+				<ul>
+					<li>
+						On detecte la latitude  et on la stocke dans une variable
+					</li>
+					<li>
+						lat = latitude("photos/photo1.jpg") <br>
+						lon = longitude("photos/photo1.jpg")
+					</li>
+					<li>Si la latitude ou la longitude ne contiennent pas de données ( None), on affiche "Pas de coordonnées géographiques pour cette photo." sinon on affiche le nom de la photo et ses coordonnées.
+						<li>
+							if lat == None or lon == None: <br>
+							<span class="marge"> print(photo, "Pas de coordonnées géographiques pour cette photo.") <br>
+								else: <br>
+								<span class="marge">	print(photo, lat, lon)</span>
+							</span>
+						</li>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="mission">
+		<h2>Mission 3 : <br> <span> Déterminer si une photographie a été prise à Mayotte</span></h2>
+		<div class="mission-text">
+			En récupérant la latitude et la longitude de la photographie. Détermine si cette photographie a été prise sur Mayotte. <br>
+			On estimera que : <br>
+			la latitude sur Mayotte est comprise entre -13.1° et -12.5°
+			<br>
+		la longitude est bien comprise entre 44.5° et 45.5° </li>
+	</ul>
+</div>
+<div class="grandesLignes btn">
+	<div class="wrapper invisible">
+		<ul>
+			<li>Reprendre les variables la latitude et la longitude de la photo, définient dans la mission 2. </li>
+			<li> Utilise un test conditionnel pour vérifier si la latitude est bien comprise entre -13.1° et -12.5° (Attention en python, le séparateur décimal est le point) et  si la longitude est bien comprise entre 44.5 et 45.5  </li>
+			<li>Afficher un message contenant le nom de la photo si elle a bien était prise à Mayotte</li>
+		</ul>
+	</div>
+</div>
+<div class="pasApas btn">
+	<div class="wrapper invisible">
+		<ul>
+			<li>
+				Si les coordonnees correspondent a Mayotte
+				A la suite de print(""), on fait effectue le test et on affiche un message quand une photo est effectivement de Mayotte.
+			</li>
+			<li>
+
+				if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4: <br>
+				<span class="marge"></span>print("La photo {} est une photo de Mayotte".format(photo))
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="wrapper-text invisible">
+
+</div>
+</div>
+<div class="mission">
+	<h2> Mission 4 : <br> <span>Faire cela pour toutes les photographies</span></h2>
+	<div class="mission-text">
+		<br>
+		Maintenant que notre système de repérage fonctionne sur toutes types de photographies, on peut traiter l'ensemble du lot. <br>
+		Il faut donc  appliquer ce code à toutes les photos.
+	</div>
+	<div class="grandesLignes btn">
+		<div class="wrapper invisible">
+			<ul>
+				<li>Mettre en place, une boucle pour répéter 1000 fois, notre système de repérage.</li>
+				<li>Faire en sorte que le nom de la photographie change à chaque passage de la boucle.</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="pasApas btn">
+		<div class="wrapper invisible">
+			<ul>
+				<li>On va utiliser une boucle <strong>for</strong> pour utiliser notre système de repérage pour toutes les noms des photographies. <br>Il faut donc faire  ... </li>
+				<li>for i in range(1000):</li>
+				<li>La variable  <strong>i</strong> prendra les valeurs de 0 à 999. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo</li>
+				<li>"photos/photo{}.jpg".format(i)</li>
+				<li>On aura donc : </li>
+				<li>for i in range(1000):<br>
+					<span class="marge">photo = "photos/photo{}.jpg".format(index)</span><br>
+					<span class="marge"># latitude et longitude de la photo</span><br>
+					<span class="marge">lat = exif.latitude(photo)</span><br>
+					<span class="marge">lon = exif.longitude(photo)</span><br>
+
+					<span class="marge"># affiche les coordonnees si elles existent</span><br>
+					<span class="marge">if lat == None or lon == None:</span><br>
+					<span class="marge"><span class="marge">	  print(photo, "Pas de coordonnées géographiques pour cette photo.")</span><br>
+					<span class="marge"> else: </span><br>
+					<span class="marge"><span class="marge">  print(photo, lat, lon)
+						<span class="marge"><span class="marge">   # si les coordonnees correspondent a Mayotte
+							<span class="marge"><span class="marge">   if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:
+								<span class="marge">     liste_mayotte.append((photo, [lat, lon]))</span></span></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="mission">
+					<h2>Mission 5 : <br> <span> Compter le nombre de photographie provenant de Mayotte </span></h2>
+					<div class="mission-text">
+						Tout est dans le titre de la mission. Combien de photo parmis les 1000 ont été prises à Mayotte. <br>
+						<em>Il y en a 251, à vous de le vérifier.</em>
+					</div>
+					<div class="grandesLignes btn">
+						<div class="wrapper invisible">
+						</div>
+					</div>
+					<div class="pasApas btn">
+						<div class="wrapper invisible">
+						</div>
+					</div>
+				</div>
+				<div class="mission">
+					<h2>Pour les plus rapides: <br> <span> Parmis les photographies de Mayotte, sélectionner les 10 photos les plus au sud de Mayotte. </span></h2>
+					<div class="mission-text">
+					</div>
+					<div class="grand*
+					<div class="pasApas btn">
+						<div class="wrapper invisible">
+							A toi de jouer ...
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="src/js/app.js"></script>
+		</body>
+		</html>
