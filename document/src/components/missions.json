@@ -1,0 +1,83 @@
+[{
+  "title": "Mission 1 : ",
+  "subtitle": "Obtenir la latitude d'une photographie",
+  "text": "Vous allez devoir obtenir la latitude de la photographie 1.jpg à l'aide du module geolocalisation.py",
+  "basic": [
+    { "html": "Importer le <strong>module</strong> exif" },
+    { "html": "Visualiser son contenu" },
+    { "html": "Appeler l'aide de la fonction latitude " },
+    { "html": "Afficher la latitude de la fonction la photographie 1.jpg" }
+  ],
+  "steps": [
+    { "html": "Pour utiliser l'<strong>interpreteur</strong> python" },
+    { "html": "On ouvre une console" },
+    { "html": "<img src=/static/images/touche_windows-s.png/> + r" },
+    { "html": "Taper cmd" },
+    { "html": "Dans la console, taper : python" },
+    { "html": "Importer le module exif :" },
+    { "python": "import exif" },
+    { "html": "Pour voir son contenu, on peut taper :" },
+    { "python": "exif.__dir__()" },
+    { "html": "Pour afficher l'aide sur la fonction latitude :" },
+    { "python": "help(exif.latitude)" },
+    { "html": "Lire la latitude d'une photo :" },
+    { "python": "latitude('photos/photo1.jpg')" }
+  ]
+}, {
+  "title": "Mission 2 : ",
+  "subtitle": "Gérer le cas des photographies sans données GPS",
+  "text": "Certaines photographies n'ont pas de données GPS :( <br> A l'appel de la fonction latitude ou longitude, on obtient une erreur. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
+  "basic": [
+    { "html": "Sauvegarder les valeurs de la latitude et de la longitude de la photo dans des variables," },
+    { "html": "Utiliser une instruction conditionnelle, pour afficher le chemin de la photo suivi du texte <br> \"Pas de coordonnées géographiques pour cette photo.\" si l'une des variables vaut None," },
+    { "html": "Sinon afficher le chemin de la photo, suivi de sa latitude et de sa longitude." }
+  ],
+  "steps": [
+    { "html": "On detecte la latitude  et on la stocke dans une variable" },
+    { "python": "lat = latitude(\"photos/photo1.jpg\")\nlon = longitude(\"photos/photo1.jpg\")" },
+    { "html": "Si la latitude ou la longitude ne contiennent pas de données ( None), on affiche \"Pas de coordonnées géographiques pour cette photo.\" sinon on affiche le nom de la photo et ses coordonnées." },
+    { "python": "if lat == None or lon == None:\n  print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)" }
+  ]
+}, {
+  "title": "Mission 3 : ",
+  "subtitle": "Déterminer si une photographie a été prise à Mayotte",
+  "text": "En récupérant la latitude et la longitude de la photographie. Détermine si cette photographie a été prise sur Mayotte. <br> On estimera que : <br> la latitude sur Mayotte est comprise entre -13.1° et -12.5° <br> la longitude est bien comprise entre 44.5° et 45.5°",
+  "basic": [
+    { "html": "Reprendre les variables la latitude et la longitude de la photo, définient dans la mission 2. " },
+    { "html": "Utilise un test conditionnel pour vérifier si la latitude est bien comprise entre -13.1° et -12.5° (Attention en python, le séparateur décimal est le point) et  si la longitude est bien comprise entre 44.5 et 45.5  " },
+    { "html": "Afficher un message contenant le nom de la photo si elle a bien était prise à Mayotte" }
+  ],
+  "steps": [
+    { "html": "Si les coordonnees correspondent a Mayotte <br> A la suite de print(\"\"), on fait effectue le test et on affiche un message quand une photo est effectivement de Mayotte." },
+    { "python": "if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4: \n  print(\"La photo {} est une photo de Mayotte\".format(photo))" }
+  ]
+}, {
+  "title": "Mission 4 : ",
+  "subtitle": "Faire cela pour toutes les photographies",
+  "text": "Maintenant que notre système de repérage fonctionne sur toutes types de photographies, on peut traiter l'ensemble du lot. <br> Il faut donc  appliquer ce code à toutes les photos.",
+  "basic": [
+    { "html": "Mettre en place, une boucle pour répéter 1000 fois, notre système de repérage." },
+    { "html": "Faire en sorte que le nom de la photographie change à chaque passage de la boucle." }
+  ],
+  "steps": [
+    { "html": "On va utiliser une boucle <strong>for</strong> pour utiliser notre système de repérage pour toutes les noms des photographies. <br>Il faut donc faire  ... " },
+    { "python": "for i in range(1000):" },
+    { "html": "La variable <strong>i</strong> prendra les valeurs de 0 à 999. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo" },
+    { "python": "\"photos/photo{}.jpg\".format(i)" },
+    { "html": "On aura donc : " },
+    { "python": "for i in range(1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n# latitude et longitude de la photo\nlat = exif.latitude(photo)\nlon = exif.longitude(photo)\n\n# affiche les coordonnees si elles existent\nif lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)\n  # si les coordonnees correspondent a Mayotte\n  if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:\n    liste_mayotte.append((photo, [lat, lon]))" }
+  ]
+}, {
+  "title": "Mission 5 : ",
+  "subtitle": "Compter le nombre de photographies provenant de Mayotte",
+  "text": "Tout est dans le titre de la mission. Combien de photo parmis les 1000 ont été prises à Mayotte. <br> <em>Il y en a 251, à vous de le vérifier.</em>",
+  "basic": [],
+  "steps": []
+}, {
+  "title": "Pour les plus rapides : ",
+  "subtitle": "Parmi les photographies de Mayotte, sélectionner les 10 photos les plus au sud de Mayotte.",
+  "basic": [
+    { "html": "A toi de jouer ..." }
+  ],
+  "steps": []
+}]
