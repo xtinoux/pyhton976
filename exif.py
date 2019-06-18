@@ -62,15 +62,3 @@ def longitude(img_path):
 if __name__ == '__main__':
 	print(latitude('photos/photo0.jpg'))
 	print(longitude('photos/photo0.jpg'))
-# lat_d = lat[0][0] + lat[1][0]/60 + lat[2][0] /(36*10**len(str(lat[2][0])))
-# lon_d = lon[0][0] + lon[1][0]/60 + lon[2][0] /(36*10**len(str(lon[2][0])))
-# print(lat_d)
-# print(lon_d)
-
-
-# m = folium.Map(location=[lat_d, lon_d])
-# tooltip = 'Click me!'
-
-# folium.Marker([lat_d, lon_d], popup='<img src="image.jpg" heigth="200px" width="150px"></img>', tooltip=tooltip).add_to(m)
-# # folium.Marker([48.8798477, 2.3551638125000003], popup='<b>Timberline Lodge</b>', tooltip=tooltip).add_to(m)
-# m.save("localisation.html")
