@@ -2,8 +2,11 @@
   "title": "Mission 1 : ",
   "subtitle": "Obtenir la latitude d'une photographie",
   "text": "Vous allez devoir obtenir la latitude de la photographie 1.jpg à l'aide du module geolocalisation.py",
+  "question": {
+    "statment": "Quelle est la latitude dde la photo photo3.jpg"
+  },
   "basic": [
-    { "html": "Importer le <strong>module</strong> exif" },
+    { "html": "Importer le <strong>module</strong> geolocalisation" },
     { "html": "Visualiser son contenu" },
     { "html": "Appeler l'aide de la fonction latitude " },
     { "html": "Afficher la latitude de la fonction la photographie 1.jpg" }
@@ -12,21 +15,21 @@
     { "html": "Pour utiliser l'<strong>interpreteur</strong> python" },
     { "html": "On ouvre une console" },
     { "html": "<img src=/static/images/touche_windows-s.png/> + r" },
-    { "html": "Taper cmd" },
-    { "html": "Dans la console, taper : python" },
-    { "html": "Importer le module exif :" },
-    { "python": "import exif" },
+    { "html": "Taper la commande :  <pre>cmd</pre>" },
+    { "html": "Dans la console, taper : <pre>python</pre>" },
+    { "html": "Importer le module geolocalisation :" },
+    { "python": "import geolocalisation" },
     { "html": "Pour voir son contenu, on peut taper :" },
-    { "python": "exif.__dir__()" },
+    { "python": "geolocalisation.__dir__()" },
     { "html": "Pour afficher l'aide sur la fonction latitude :" },
-    { "python": "help(exif.latitude)" },
+    { "python": "help(geolocalisation.latitude)" },
     { "html": "Lire la latitude d'une photo :" },
     { "python": "latitude('photos/photo1.jpg')" }
   ]
 }, {
   "title": "Mission 2 : ",
   "subtitle": "Gérer le cas des photographies sans données GPS",
-  "text": "Certaines photographies n'ont pas de données GPS :( <br> A l'appel de la fonction latitude ou longitude, on obtient une erreur. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
+  "text": "Certaines photographies n'ont pas de données GPS &#x1F61E; <br> A l'appel de la fonction latitude ou longitude, on obtient une erreur. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
   "basic": [
     { "html": "Sauvegarder les valeurs de la latitude et de la longitude de la photo dans des variables," },
     { "html": "Utiliser une instruction conditionnelle, pour afficher le chemin de la photo suivi du texte <br> \"Pas de coordonnées géographiques pour cette photo.\" si l'une des variables vaut None," },
@@ -65,7 +68,7 @@
     { "html": "La variable <strong>i</strong> prendra les valeurs de 0 à 999. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo" },
     { "python": "\"photos/photo{}.jpg\".format(i)" },
     { "html": "On aura donc : " },
-    { "python": "for i in range(1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n# latitude et longitude de la photo\nlat = exif.latitude(photo)\nlon = exif.longitude(photo)\n\n# affiche les coordonnees si elles existent\nif lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)\n  # si les coordonnees correspondent a Mayotte\n  if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:\n    liste_mayotte.append((photo, [lat, lon]))" }
+    { "python": "for i in range(1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n# latitude et longitude de la photo\nlat = geolocalisation.latitude(photo)\nlon = geolocalisation.longitude(photo)\n\n# affiche les coordonnees si elles existent\nif lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)\n  # si les coordonnees correspondent a Mayotte\n  if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:\n    liste_mayotte.append((photo, [lat, lon]))" }
   ]
 }, {
   "title": "Mission 5 : ",

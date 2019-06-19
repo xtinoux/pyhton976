@@ -1,6 +1,6 @@
 # Objectif : classer les photos qui sont sur Mayotte ou non
 
-import exif
+import geolocalisation
 import folium
 
 def add_marker(my_map, name, location):
@@ -17,8 +17,8 @@ liste_mayotte = []
 for index in range(3):
   photo = "photos/photo{}.jpg".format(index)
   # latitude et longitude de la photo
-  lat = exif.latitude(photo)
-  lon = exif.longitude(photo)
+  lat = geolocalisation.latitude(photo)
+  lon = geolocalisation.longitude(photo)
 
   # affiche les coordonnees si elles existent
   if lat == None or lon == None:
