@@ -1,83 +1,182 @@
 [{
   "title": "Mission 1 : ",
   "subtitle": "Obtenir la latitude d'une photographie",
-  "text": "Vous allez devoir obtenir la latitude de la photographie 1.jpg à l'aide du module geolocalisation.py",
+  "text": "Vous allez devoir obtenir la latitude de la photographie <i>photo1.jpg</i> à l'aide du module <i>geolocalisation.py</i>",
+  "question": {
+    "statement": "Quelle est la latitude de la photo photo3.jpg donnée par la fonction latitude (avec une précision de 2 chiffres après la virgule) ?",
+    "response": "-12[\\.,]84"
+  },
   "basic": [
-    { "html": "Importer le <strong>module</strong> exif" },
+    { "html": "Importer le <strong>module</strong> geolocalisation" },
     { "html": "Visualiser son contenu" },
-    { "html": "Appeler l'aide de la fonction latitude " },
-    { "html": "Afficher la latitude de la fonction la photographie 1.jpg" }
+    { "html": "Appeler l'aide de la <strong>fonction</strong> latitude " },
+    { "html": "Afficher la latitude de la <strong>fonction</strong> la photographie <i>photo1.jpg</i>" }
   ],
   "steps": [
-    { "html": "Pour utiliser l'<strong>interpreteur</strong> python" },
+    { "html": "Pour utiliser l'<strong>interpréteur</strong> python" },
     { "html": "On ouvre une console" },
     { "html": "<img src=/static/images/touche_windows-s.png/> + r" },
-    { "html": "Taper cmd" },
-    { "html": "Dans la console, taper : python" },
-    { "html": "Importer le module exif :" },
-    { "python": "import exif" },
+    { "html": "Taper la commande : " },
+    { "python": "cmd"},
+    { "html": "Dans la <strong>console</strong>, taper :" },
+    { "python": "python"},
+    { "html": "Importer le module geolocalisation :" },
+    { "python": "import geolocalisation" },
     { "html": "Pour voir son contenu, on peut taper :" },
-    { "python": "exif.__dir__()" },
+    { "python": "geolocalisation.__dir__()" },
     { "html": "Pour afficher l'aide sur la fonction latitude :" },
-    { "python": "help(exif.latitude)" },
+    { "python": "help(geolocalisation.latitude)" },
     { "html": "Lire la latitude d'une photo :" },
     { "python": "latitude('photos/photo1.jpg')" }
   ]
 }, {
   "title": "Mission 2 : ",
   "subtitle": "Gérer le cas des photographies sans données GPS",
-  "text": "Certaines photographies n'ont pas de données GPS :( <br> A l'appel de la fonction latitude ou longitude, on obtient une erreur. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
+  "text": "Certaines photographies n'ont pas de données GPS &#x1F61E; <br> Pour ces photos la fonction <i>latitude</i> ne donne pas de valeur : en Python on dit qu'elle renvoit <strong>None</strong>. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
+  "question": {
+    "statement": "La photo <i>\"photo3.jpg\"</i> a pour latitude -12.84°, que va afficher le programme suivant ? <pre>lat = latitude(\"photos/photo3.jpg\")\nif lat > -13.5:\n  print(\"Latitude OK\")\nelse:\n  print(\"Ailleurs\")</pre>",
+    "response": "[Ll]atitude\\s+[Oo][Kk]"
+  },
   "basic": [
     { "html": "Sauvegarder les valeurs de la latitude et de la longitude de la photo dans des variables," },
-    { "html": "Utiliser une instruction conditionnelle, pour afficher le chemin de la photo suivi du texte <br> \"Pas de coordonnées géographiques pour cette photo.\" si l'une des variables vaut None," },
+    { "html": "Utiliser une instruction conditionnelle (<strong>if</strong>), pour afficher le chemin de la photo suivi du texte : <br> <i>\"Pas de coordonnées géographiques pour cette photo.\"</i> si l'une des variables vaut <strong>None</strong>," },
     { "html": "Sinon afficher le chemin de la photo, suivi de sa latitude et de sa longitude." }
   ],
   "steps": [
-    { "html": "On detecte la latitude  et on la stocke dans une variable" },
+    { "html": "On détecte la latitude  et on la stocke dans une variable" },
     { "python": "lat = latitude(\"photos/photo1.jpg\")\nlon = longitude(\"photos/photo1.jpg\")" },
-    { "html": "Si la latitude ou la longitude ne contiennent pas de données ( None), on affiche \"Pas de coordonnées géographiques pour cette photo.\" sinon on affiche le nom de la photo et ses coordonnées." },
-    { "python": "if lat == None or lon == None:\n  print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)" }
+    { "html": "Si la latitude ne contient pas de données (<strong>None</strong>), on affiche <i>\"Pas de coordonnées géographiques pour cette photo.\"</i> sinon on affiche le nom de la photo et ses coordonnées." },
+    { "python": "if lat == None:\n  print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(\"{photo} a pour coordonnées {lat} {lon}\".format(photo = photo, lat = lat, lon = lon)" }
   ]
 }, {
   "title": "Mission 3 : ",
   "subtitle": "Déterminer si une photographie a été prise à Mayotte",
-  "text": "En récupérant la latitude et la longitude de la photographie. Détermine si cette photographie a été prise sur Mayotte. <br> On estimera que : <br> la latitude sur Mayotte est comprise entre -13.1° et -12.5° <br> la longitude est bien comprise entre 44.5° et 45.5°",
+  "text": "En récupérant la latitude et la longitude de la photographie. Déterminer si cette photographie a été prise sur Mayotte. <br> On estimera que : <br> <ul><li>la latitude est comprise entre -13.1° et -12.5°</li><li>la longitude est comprise entre 44.5° et 45.5°</li></ul>",
+  "question": {
+    "statement": "if 2+ 2 = 5 ... Qu'affiche ce programme ?",
+    "response": "[Ff]aux"
+  },
   "basic": [
-    { "html": "Reprendre les variables la latitude et la longitude de la photo, définient dans la mission 2. " },
-    { "html": "Utilise un test conditionnel pour vérifier si la latitude est bien comprise entre -13.1° et -12.5° (Attention en python, le séparateur décimal est le point) et  si la longitude est bien comprise entre 44.5 et 45.5  " },
-    { "html": "Afficher un message contenant le nom de la photo si elle a bien était prise à Mayotte" }
+    { "html": "Reprendre les variables <strong>lat</strong> et <strong>lon</strong> de la photo, définies dans la mission 2. " },
+    { "html": "Utiliser un test conditionnel (<strong>if</strong>) pour vérifier si la latitude est bien comprise entre -13.1° et -12.5° et  si la longitude est bien comprise entre 44.5 et 45.5 <br><i>Attention en python, le séparateur décimal est le point</i>" },
+    { "html": "Afficher un message contenant le chemin de la photo si elle a été prise à Mayotte" }
   ],
   "steps": [
-    { "html": "Si les coordonnees correspondent a Mayotte <br> A la suite de print(\"\"), on fait effectue le test et on affiche un message quand une photo est effectivement de Mayotte." },
-    { "python": "if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4: \n  print(\"La photo {} est une photo de Mayotte\".format(photo))" }
+    { "html": "Pour utiliser plusieurs conditions au sein d'un <strong>if</strong> il est possible d'utiliser des connecteurs logiques comme <strong>and</strong> ou <strong>or</strong>."},
+    { "html" : "A la suite de l'instruction <strong>print</strong> de la mission précédente, on effectue le test et on affiche un message quand une photo est effectivement à Mayotte."},
+    { "python": "if lat > -13.1 and lat < -12.5 and lon > 44.5 and lon < 45.5: \n  print(\"La photo {} est une photo de Mayotte\".format(photo))" }
   ]
 }, {
   "title": "Mission 4 : ",
   "subtitle": "Faire cela pour toutes les photographies",
-  "text": "Maintenant que notre système de repérage fonctionne sur toutes types de photographies, on peut traiter l'ensemble du lot. <br> Il faut donc  appliquer ce code à toutes les photos.",
+  "text": "Maintenant que notre système de repérage fonctionne. On peut traiter l'ensemble du lot. <br> Il faut donc appliquer notre code à toutes les photos.<br>Soit on récopie 1000 fois les instructions, soit on trouve quelque chose de plus malin.",
+  "question": {
+    "statement": "Quelle sera la valeur de la variable <strong>res</strong> à la fin du programme suivant ? <pre>res = 10\nfor i in range(2, 5):\n  res = res + i\n</pre>",
+    "response": "19"
+  },
   "basic": [
     { "html": "Mettre en place, une boucle pour répéter 1000 fois, notre système de repérage." },
     { "html": "Faire en sorte que le nom de la photographie change à chaque passage de la boucle." }
   ],
   "steps": [
-    { "html": "On va utiliser une boucle <strong>for</strong> pour utiliser notre système de repérage pour toutes les noms des photographies. <br>Il faut donc faire  ... " },
-    { "python": "for i in range(1000):" },
+    { "html": "Pour utiliser notre système de repérage à chaque photographie, on va utiliser une boucle <strong>for</strong>. <br>Il faut donc faire : " },
+    { "python": "for i in range(0, 1000):" },
     { "html": "La variable <strong>i</strong> prendra les valeurs de 0 à 999. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo" },
     { "python": "\"photos/photo{}.jpg\".format(i)" },
     { "html": "On aura donc : " },
-    { "python": "for i in range(1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n# latitude et longitude de la photo\nlat = exif.latitude(photo)\nlon = exif.longitude(photo)\n\n# affiche les coordonnees si elles existent\nif lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\nelse:\n  print(photo, lat, lon)\n  # si les coordonnees correspondent a Mayotte\n  if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:\n    liste_mayotte.append((photo, [lat, lon]))" }
+    { "python": "for i in range(0, 1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n  # latitude et longitude de la photo\n  lat = geolocalisation.latitude(photo)\n  lon = geolocalisation.longitude(photo)\n\n  # affiche les coordonnees si elles existent\n  if lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\n  else:\n    print(photo, lat, lon)\n    # si les coordonnees correspondent a Mayotte\n    if lat > -13.1 and lat < -12.5 and lon > 44.5 and lon < 45.5:\n      print(\"La photo {} est une photo de Mayotte\".format(photo))" }
   ]
 }, {
   "title": "Mission 5 : ",
+  "question": {
+    "statement": "Alors, combien y a-t-il de photos prises à Mayotte ?",
+    "response": "251"
+  },
   "subtitle": "Compter le nombre de photographies provenant de Mayotte",
-  "text": "Tout est dans le titre de la mission. Combien de photo parmis les 1000 ont été prises à Mayotte. <br> <em>Il y en a 251, à vous de le vérifier.</em>",
-  "basic": [],
-  "steps": []
+  "text": "Tout est dans le titre de la mission. Combien de photos parmi les 1000 ont été prises à Mayotte.",
+  "basic": [
+    { "html": "Créer avant de la boucle une variable <strong>compteur</strong>" },
+    { "html": "Dans la boucle, à chaque photo trouvée à Mayotte, on incrémente ce compteur" },
+    { "html": "Après la boucle, penser à afficher la valeur de la variable <strong>compteur</strong>" }
+  ],
+  "steps": [
+    { "html": "Trop facile" }
+  ]
+}, {
+  "title": "Mission 6 :",
+  "subtitle": "Lister les photos de Mayotte",
+  "text": "Créer une liste qui contient toutes les photos qui ont été prises à Mayotte.<br>En Python, une liste est une collection d'objets séparés par des virgules.",
+  "question": {
+    "statement": "Quelle sera le nombre d'éléments de la liste <strong>liste</strong> à la fin du programme suivant ? <pre>liste = []\nfor i in range(2, 5):\n  liste.append(i)\n</pre>",
+    "response": "3"
+  },
+  "basic": [
+    { "html": "Créer une variable de type liste au début du programme." },
+    { "html": "A chaque passage de la boucle, on ajoute la photo si nécessaire" }
+  ],
+  "steps": [
+    { "html": "Créer une variable de type liste et nommée <strong>liste_mayotte</strong> au début du programme" },
+    { "python": "liste_mayotte = []" },
+    { "html": "Dans la boucle, à chaque fois qu'une photo est de Mayotte on l'ajoute à la liste grâce à la méthode <strong>append</strong> :"},
+    { "python": "liste_mayotte.append(photo)" }
+   ]
 }, {
   "title": "Pour les plus rapides : ",
   "subtitle": "Parmi les photographies de Mayotte, sélectionner les 10 photos les plus au sud de Mayotte.",
   "basic": [
     { "html": "A toi de jouer ..." }
   ],
+  "steps": []
+}, {
+  "title": "Mission 7 :",
+  "subtitle": "Installation de la bibliothèque folium",
+  "text": "La bibliothèque (<i>in english library</i>) folium permet de créer facilement des cartes grâce aux données obtenues via OpenStreetMap.",
+  "basic": [],
+  "steps": [
+    {"html": "Pour installer une bibliothèque Python, on utilise le gestionnaire fourni : <strong>pip</strong>"},
+    {"html": "Au lycée il est aussi nécessaire de passer par un proxy (qui correspond à l'option <strong>--proxy</strong>)"},
+    {"python": "pip install folium --proxy http://10.209.157.254:3128"}
+  ]
+}, {
+  "title": "Mission 8 :",
+  "subtitle": "Initialisation de la carte de Mayotte",
+  "text": "Utiliser la bibliothèque pour créer un fond de carte centré sur Mayotte",
+  "basic": [
+    {"html": "Importer la bibliothèque folium"},
+    {"html": "Utiliser la méthode <strong>Map</strong> pour créer une carte centrée sur les coordonnées de Mayotte. <br><i>NB: il est possible d'utiliser la fonction <strong>help</strong> vu dans la mission 1 pour savoir comment utiliser cette méthode : <pre>help(folium.Map)</pre></i>"},
+    {"html": "Utiliser la méthode <strong>save</strong> pour enregistrer cette carte dans un fichier nommé <i>map.html</i>" }
+  ],
+  "steps": [
+    {"html": "Importer la bibliothèque folium"},
+    {"python": "import folium" },
+    {"html": "Utiliser la méthode <strong>Map</strong> pour créer une carte centrée sur les coordonnées [-12.83, 45.15]"},
+    {"python": "map = folium.Map(location=[-12.83,45.15], zoom_start=11)" },
+    {"html": "Enregistrer cette carte dans un fichier :" },
+    {"python": "map.save(\"map.html\")" }
+  ]
+}, {
+  "title": "Mission 9 :",
+  "subtitle": "Afficher la position des photos sur la carte",
+  "text": "L'objectif est maintenant d'ajouter sur la carte un marqueur pour chaque photo.<br>Pour cela nous allons définir nous-même une fonction Python qui permet d'ajouter ce marqueur sur la carte.",
+  "question": {
+    "statement": "Combien de fois le texte \"\" est-il affiché par le programme suivant ? <pre>liste = [\"EPS-Danse\", \"SNT-Geolocalisation\",\n         \"SNT-Photographie\", \"EPS-Basket\",\n         \"SNT-Web\", \"SVT-Cellule\", \"SVT-Geologie\"]\n\ndef theme(chaine_de_caracteres):\n  if \"SNT\" in chaine_de_caracteres:\n    print(\"Ce thème est un thème abordé en SNT\")\n\nfor chaine in liste:\n  theme(chaine)</pre>",
+    "response": "3"
+  },
+  "basic": [
+    {"html": "Créer une fonction <strong>ajouter_marqueur</strong> qui ajoute un marqueur sur la carte à la position d'une photo."},
+    {"html": "Parcourir la liste des photos situées à Mayotte."},
+    {"html": "Pour chaque photo, utiliser la fonction <strong>ajouter_marqueur</strong> pour positionner la photo sur la carte."}
+  ],
+  "steps": [
+    {"html": "Définir une fonction nommée <strong>ajouter_marqueur</strong> qui prend en paramètre la carte (sur laquelle est ajouté le marqueur) et le chemin de la photo :"},
+    {"python": "def ajouter_marqueur(map, photo):\n  lat = geolocalisation.latitude(photo)\n  lon = geolocalisation.longitude(photo)\n  folium.Marker(\n    location=[lat, lon],\n    popup=photo,\n    icon=folium.Icon(icon=\"picture\")\n  ).add_to(map)" },
+    {"html": "Pour appliquer cette fonction à tous les éléments de la liste, nous allons utiliser une boucle <strong>for</strong> : "},
+    {"python": "for photo in liste_mayotte:\n  ajouter_marqueur(map, photo)"}
+  ]
+}, {
+  "title": "Pour les plus rapides :",
+  "subtitle": "Optimiser le programme",
+  "text": "Dans le programme que nous avons écrit la latitude et la longitude de chaque photo sont calculées deux fois. <br> Modifier le programme pour éviter ce recalcul.",
+  "basic": [],
   "steps": []
 }]

@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueHighlightJS from 'vue-highlightjs'
+import SlideUpDown from 'vue-slide-up-down'
 
 Vue.config.productionTip = false
 
 Vue.use(VueHighlightJS)
+Vue.component('slide-up-down', SlideUpDown)
 
 /* eslint-disable no-new */
 new Vue({

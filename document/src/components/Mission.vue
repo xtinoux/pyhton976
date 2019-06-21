@@ -6,39 +6,48 @@
     </header>
     <div class="mission-text" v-html="mission.text">
     </div>
-    <div class="grandesLignes btn" >
+    <div class="grandesLignes btn" v-if="mission.basic.length">
       <div v-on:click="displayBasic = !displayBasic">
-        <img  class="icone" src="/static/images/checklist2.png"/> Les grandes Lignes
+        <img  class="icone" src="/static/images/checklist2.png"/> Les grandes lignes
       </div>
-      <div v-if="displayBasic" class="wrapper">
+      <slide-up-down :active="displayBasic" :duration="500" class="wrapper">
         <ul>
           <li v-for="item in mission.basic">
             <span v-if="item.html" v-html="item.html"></span>
           </li>
         </ul>
-      </div>
+      </slide-up-down>
     </div>
-    <div class="pasApas btn">
+    <div class="pasApas btn" v-if="mission.steps.length">
       <div v-on:click="displaySteps = !displaySteps">
         <img class="icone" src="/static/images/pas_a_pas.png"/> Le pas à pas
       </div>
-      <div v-if="displaySteps" class="wrapper">
+      <slide-up-down :active="displaySteps" :duration="500" class="wrapper">
         <ul>
           <li v-for="item in mission.steps">
-            <span v-if="item.html" v-html="item.html"></span>
-            <span v-if="item.python">
+            <span class="instruction" v-if="item.html" v-html="item.html"></span>
+            <span class="python" v-if="item.python">
               <pre v-highlightjs><code class="python">{{item.python}}</code></pre>
             </span>
           </li>
         </ul>
-      </div>
+      </slide-up-down>
     </div>
-    <router-link v-if="last"
-      :to="{ name: 'Mission', params: { index: 1 }}"
-      tag="button" class="done">Retour au début</router-link>
-    <router-link v-else
-      :to="{ name: 'Mission', params: { index: missionIndex + 1 }}"
-      tag="button" class="done">Mission accomplie</router-link>
+    <div class="question" v-if="mission.question">
+      <span v-html="mission.question.statement"></span>
+      <input type="text" v-model="response"/>
+    </div>
+    <nav>
+      <router-link v-if="missionIndex > 1"
+        :to="{ name: 'Mission', params: { index: missionIndex - 1 }}"
+        tag="button" class="back">Retour</router-link>
+      <router-link v-if="last && (solved || !mission.question)"
+        :to="{ name: 'Mission', params: { index: 1 }}"
+        tag="button" class="done">Retour au début</router-link>
+      <router-link v-if="!last && (solved || !mission.question)"
+        :to="{ name: 'Mission', params: { index: missionIndex + 1 }}"
+        tag="button" class="done">Mission accomplie</router-link>
+    </nav>
   </div>
 </template>
 
@@ -52,6 +61,8 @@ export default {
     return {
       missionIndex: index,
       last: index === missions.length,
+      response: null,
+      solved: false,
       displayBasic: false,
       displaySteps: false,
       mission: missions[index - 1]
@@ -66,6 +77,15 @@ export default {
       this.displayBasic = false
       this.displaySteps = false
       this.mission = missions[index - 1]
+    },
+    'response' (val, oldVal) {
+      const reg = this.mission.question ? this.mission.question.response : null
+      let re = new RegExp(reg)
+      if (val) {
+        this.solved = val.match(re) !== null
+      } else {
+        this.solved = false
+      }
     }
   }
 }
@@ -74,7 +94,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.mission{
+.mission {
   margin:auto;
   width: 95%;
   max-width: 800px;
@@ -82,6 +102,7 @@ export default {
   background-color:#e1f5fc;
   color:#444;
   padding-bottom: 20px;
+
 }
 
 .mission-text{
@@ -97,10 +118,23 @@ header {
 }
 h2 {
   color: #f2704c;
+  letter-spacing: .2rem;
+  text-shadow: -1px  1px 2px #a8523a,
+                1px  1px 2px #a8523a,
+                1px -1px 0   #a8523a,
+               -1px -1px 0   #a8523a;
 }
 h3 {
-  max-width: 75%;
   color:white;
+  text-shadow: -1px  1px 2px #555,
+                1px  1px 2px #555,
+                1px -1px 0   #555,
+               -1px -1px 0   #555;
+}
+
+.grandesLignes > div:first-child, .pasApas > div:first-child {
+  user-select: none;
+  cursor: pointer;
 }
 
 .icone {
@@ -119,28 +153,21 @@ h3 {
   display: inline-block;
   /*min-width: 45%;*/
   min-width: 95%;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px 20px 0 20px;
   border: 1px solid #DDD;
   background-color: #EEE;
   border-radius: 7px;
 }
 
-.btn :hover {
-  /*background: lightgray;*/
-}
-
 .wrapper {
   background-color:#FFF;
-  padding-top: 10px;
-  padding-bottom: 10px;
   width: 100%;
 }
 
 ul {
   list-style: none;
   padding:0;
-
+  margin: 0;
 }
 
 li {
@@ -148,16 +175,38 @@ li {
   padding-bottom: 10px;
   padding-left: 10px;
 }
-ul :nth-child(2n) {
-  background-color: #EEE;
+ul .instruction {
+  background: white;
+}
+ul .python {
+  /*background: white;*/
 }
 
 .marge {
   margin-left: 30px;
 }
 
-.mission button.done {
-  display: block;
+.question {
+  margin: 20px;
+}
+
+.question input[type="text"]{
+  height: 30px;
+  width: 200px;
+  font-size: 0.9rem;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-left: 20px;
+  padding: 0 8px;
+  font-family: Verdana;
+}
+
+.mission nav {
+  display: flex;
+}
+
+.mission button {
+  display: inline-block;
   background-color: #277c99;
   border-color: #277c99;
   color: #fff;
@@ -171,10 +220,12 @@ ul :nth-child(2n) {
   font-size: 0.75rem;
   line-height: 1.2;
   border-radius: .25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.mission button.done:hover {
+
+.mission button:hover {
   background-color: #076e84;
   border-color: #076e84;
 }
+
 </style>
