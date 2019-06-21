@@ -26,7 +26,7 @@ for index in range(3):
   else:
     print(photo, lat, lon)
     # si les coordonnees correspondent a Mayotte
-    if lat > -13.2 and lat < -12.5 and lon > 44.9 and lon < 45.4:
+    if lat > -13.1 and lat < -12.5 and lon > 44.5 and lon < 45.5:
       liste_mayotte.append((photo, [lat, lon]))
 
 print("Nombre de photos à Mayotte :", len(liste_mayotte))
