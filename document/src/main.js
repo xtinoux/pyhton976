@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import VueHighlightJS from 'vue-highlightjs'
 import SlideUpDown from 'vue-slide-up-down'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.config.productionTip = false
 
 Vue.use(VueHighlightJS)
+Vue.use(VueClipboard)
 Vue.component('slide-up-down', SlideUpDown)
 
 /* eslint-disable no-new */

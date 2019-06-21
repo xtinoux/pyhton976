@@ -1,5 +1,8 @@
 <template>
   <div class="mission">
+    <transition name="fade" >
+      <div v-if="toast.visible" class="toast">{{toast.message}}</div>
+    </transition>
     <header>
       <h2>{{mission.title}}</h2>
       <h3>{{mission.subtitle}}</h3>
@@ -26,9 +29,16 @@
         <ul>
           <li v-for="item in mission.steps">
             <span class="instruction" v-if="item.html" v-html="item.html"></span>
-            <span class="python" v-if="item.python">
-              <pre v-highlightjs><code class="python">{{item.python}}</code></pre>
-            </span>
+            <div class="python" v-if="item.python">
+              <button v-if="displaySteps" type="button" class="copy-btn"
+                title="Copier"
+                v-clipboard:copy="item.python"
+                v-clipboard:success="onClipCopy"
+                v-clipboard:error="onClipError"><img src="/static/images/clipboard.png"/></button>
+              <span>
+                <pre v-highlightjs><code class="python">{{item.python}}</code></pre>
+              </span>
+            </div>
           </li>
         </ul>
       </slide-up-down>
@@ -65,7 +75,11 @@ export default {
       solved: false,
       displayBasic: false,
       displaySteps: false,
-      mission: missions[index - 1]
+      mission: missions[index - 1],
+      toast: {
+        visible: false,
+        message: ''
+      }
     }
   },
   watch: {
@@ -77,6 +91,7 @@ export default {
       this.displayBasic = false
       this.displaySteps = false
       this.mission = missions[index - 1]
+      this.response = ''
     },
     'response' (val, oldVal) {
       const reg = this.mission.question ? this.mission.question.response : null
@@ -87,12 +102,44 @@ export default {
         this.solved = false
       }
     }
+  },
+  methods: {
+    onClipCopy: function (e) {
+      this.toast.message = 'Copié: ' + e.text
+      this.toast.visible = true
+      setTimeout(() => { this.toast.visible = false }, 3000);
+    },
+    onClipError: function (e) {
+      console.error('Failed to copy texts')
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.toast {
+  position: fixed;
+  color: white;
+  font-weight: bold;
+  bottom: 10px;
+  right: 10px;
+  background: #4791ae;
+  padding: 10px;
+  width: 35%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .6s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
 .mission {
   margin:auto;
@@ -151,7 +198,6 @@ h3 {
 
 .btn {
   display: inline-block;
-  /*min-width: 45%;*/
   min-width: 95%;
   margin: 20px 20px 0 20px;
   border: 1px solid #DDD;
@@ -166,20 +212,43 @@ h3 {
 
 ul {
   list-style: none;
-  padding:0;
+  padding: 8px;
   margin: 0;
 }
 
 li {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 ul .instruction {
   background: white;
 }
-ul .python {
-  /*background: white;*/
+.python {
+  position: relative;
+}
+.python pre {
+  margin: 0;
+  font-size: 0.7rem;
+}
+.copy-btn {
+  position: absolute;
+  z-index: 10;
+  right: 4px;
+  padding: 2px;
+  margin-top: 4px;
+  background-color: unset;
+  opacity: 0.4;
+  transition: opacity 300ms, border 300ms;
+}
+.copy-btn:hover {
+  background-color: unset;
+  border: 1px solid #777;
+  opacity: 1;
+}
+.copy-btn img {
+  width: 20px;
+  height: 16px;
+  margin-top: 2px;
 }
 
 .marge {
@@ -201,11 +270,11 @@ ul .python {
   font-family: Verdana;
 }
 
-.mission nav {
+nav {
   display: flex;
 }
 
-.mission button {
+button {
   display: inline-block;
   background-color: #277c99;
   border-color: #277c99;
@@ -223,7 +292,7 @@ ul .python {
   transition: color .15s ease-in-out,background-color .15s ease-in-out, border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.mission button:hover {
+button:hover {
   background-color: #076e84;
   border-color: #076e84;
 }
