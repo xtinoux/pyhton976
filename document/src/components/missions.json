@@ -4,7 +4,7 @@
   "text": "Vous allez devoir obtenir la latitude de la photographie <i>photo1.jpg</i> à l'aide du module <i>geolocalisation.py</i>",
   "question": {
     "statement": "Quelle est la latitude de la photo photo3.jpg donnée par la fonction latitude (avec une précision de 2 chiffres après la virgule) ?",
-    "response": "-12[\\.,]84"
+    "response": "-\\s*12[\\.,]84"
   },
   "basic": [
     { "html": "Importer le <strong>module</strong> geolocalisation" },
@@ -33,6 +33,7 @@
   "title": "Mission 2 : ",
   "subtitle": "Gérer le cas des photographies sans données GPS",
   "text": "Certaines photographies n'ont pas de données GPS &#x1F61E; <br> Pour ces photos la fonction <i>latitude</i> ne donne pas de valeur : en Python on dit qu'elle renvoit <strong>None</strong>. <br> Il faut donc gérer ce cas à part et exclure les photographies n'ayant pas de données GPS.",
+  "more": 16,
   "question": {
     "statement": "La photo <i>\"photo3.jpg\"</i> a pour latitude -12.84°, que va afficher le programme suivant ? <pre>lat = latitude(\"photos/photo3.jpg\")\nif lat > -13.5:\n  print(\"Latitude OK\")\nelse:\n  print(\"Ailleurs\")</pre>",
     "response": "[Ll]atitude\\s+[Oo][Kk]"
@@ -52,9 +53,10 @@
   "title": "Mission 3 : ",
   "subtitle": "Déterminer si une photographie a été prise à Mayotte",
   "text": "En récupérant la latitude et la longitude de la photographie. Déterminer si cette photographie a été prise sur Mayotte. <br> On estimera que : <br> <ul><li>la latitude est comprise entre -13.1° et -12.5°</li><li>la longitude est comprise entre 44.5° et 45.5°</li></ul>",
+  "more": 143,
   "question": {
-    "statement": "if 2+ 2 = 5 ... Qu'affiche ce programme ?",
-    "response": "[Ff]aux"
+    "statement": "On parle régulièrement du début de la logique quand Aristote constate que la phrase « 2+2=5 et je suis une fille » est fausse, qu'elle soit dite par un garçon ou par une fille.<br> Ce type de logique, dite booléenne (car structurée par Georges Boole), est très souvent utilisée en programmation.<br>Que va afficher le programme suivant ?<br><pre>a = 42\nb = 0\nif a > 20 and (2+2 == 5) :<br>  b = 10\nelse :\n  b = -20\n\nif a % 3 == 5 or b < 0 :<br>  a = a + b\nelse :\n  a = a - b\n\nprint(a)</pre>",
+    "response": "22"
   },
   "basic": [
     { "html": "Reprendre les variables <strong>lat</strong> et <strong>lon</strong> de la photo, définies dans la mission 2. " },
@@ -70,6 +72,7 @@
   "title": "Mission 4 : ",
   "subtitle": "Faire cela pour toutes les photographies",
   "text": "Maintenant que notre système de repérage fonctionne. On peut traiter l'ensemble du lot. <br> Il faut donc appliquer notre code à toutes les photos.<br>Soit on récopie 1000 fois les instructions, soit on trouve quelque chose de plus malin.",
+  "more": 31,
   "question": {
     "statement": "Quelle sera la valeur de la variable <strong>res</strong> à la fin du programme suivant ? <pre>res = 10\nfor i in range(2, 5):\n  res = res + i\n</pre>",
     "response": "19"
@@ -88,12 +91,13 @@
   ]
 }, {
   "title": "Mission 5 : ",
+  "subtitle": "Compter le nombre de photographies provenant de Mayotte",
+  "text": "Tout est dans le titre de la mission. Combien de photos parmi les 1000 ont été prises à Mayotte.",
+  "more": 23,
   "question": {
     "statement": "Alors, combien y a-t-il de photos prises à Mayotte ?",
     "response": "251"
   },
-  "subtitle": "Compter le nombre de photographies provenant de Mayotte",
-  "text": "Tout est dans le titre de la mission. Combien de photos parmi les 1000 ont été prises à Mayotte.",
   "basic": [
     { "html": "Créer avant de la boucle une variable <strong>compteur</strong>" },
     { "html": "Dans la boucle, à chaque photo trouvée à Mayotte, on incrémente ce compteur" },
@@ -106,6 +110,7 @@
   "title": "Mission 6 :",
   "subtitle": "Lister les photos de Mayotte",
   "text": "Créer une liste qui contient toutes les photos qui ont été prises à Mayotte.<br>En Python, une liste est une collection d'objets séparés par des virgules.",
+  "more": 50,
   "question": {
     "statement": "Quelle sera le nombre d'éléments de la liste <strong>liste</strong> à la fin du programme suivant ? <pre>liste = []\nfor i in range(2, 5):\n  liste.append(i)\n</pre>",
     "response": "3"
@@ -158,6 +163,7 @@
   "title": "Mission 9 :",
   "subtitle": "Afficher la position des photos sur la carte",
   "text": "L'objectif est maintenant d'ajouter sur la carte un marqueur pour chaque photo.<br>Pour cela nous allons définir nous-même une fonction Python qui permet d'ajouter ce marqueur sur la carte.",
+  "more": 61,
   "question": {
     "statement": "Combien de fois le texte \"\" est-il affiché par le programme suivant ? <pre>liste = [\"EPS-Danse\", \"SNT-Geolocalisation\",\n         \"SNT-Photographie\", \"EPS-Basket\",\n         \"SNT-Web\", \"SVT-Cellule\", \"SVT-Geologie\"]\n\ndef theme(chaine_de_caracteres):\n  if \"SNT\" in chaine_de_caracteres:\n    print(\"Ce thème est un thème abordé en SNT\")\n\nfor chaine in liste:\n  theme(chaine)</pre>",
     "response": "3"

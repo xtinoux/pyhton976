@@ -9,6 +9,9 @@
     </header>
     <div class="mission-text" v-html="mission.text">
     </div>
+    <div class="more" v-if="mission.more">
+      Pour plus d'informations, voir le livre « Informatique et Sciences du Numérique » page {{mission.more}}.
+    </div>
     <div class="grandesLignes btn" v-if="mission.basic.length">
       <div v-on:click="displayBasic = !displayBasic">
         <img  class="icone" src="/static/images/checklist2.png"/> Les grandes lignes
@@ -152,9 +155,13 @@ export default {
 
 }
 
-.mission-text{
+.mission-text, .more {
   padding-left: 30px;
   padding-right: 30px;
+}
+.more {
+  margin-top: 8px;
+  font-style: italic;
 }
 
 header {
