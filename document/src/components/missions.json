@@ -71,28 +71,28 @@
 }, {
   "title": "Mission 4 : ",
   "subtitle": "Faire cela pour toutes les photographies",
-  "text": "Maintenant que notre système de repérage fonctionne. On peut traiter l'ensemble du lot. <br> Il faut donc appliquer notre code à toutes les photos.<br>Soit on récopie 1000 fois les instructions, soit on trouve quelque chose de plus malin.",
+  "text": "Maintenant que notre système de repérage fonctionne. On peut traiter l'ensemble du lot. <br> Il faut donc appliquer notre code à toutes les photos.<br>Soit on récopie 570 fois les instructions, soit on trouve quelque chose de plus malin.",
   "more": 31,
   "question": {
     "statement": "Quelle sera la valeur de la variable <strong>res</strong> à la fin du programme suivant ? <pre>res = 10\nfor i in range(2, 5):\n  res = res + i\n</pre>",
     "response": "19"
   },
   "basic": [
-    { "html": "Mettre en place, une boucle pour répéter 1000 fois, notre système de repérage." },
+    { "html": "Mettre en place, une boucle pour répéter 570 fois, notre système de repérage." },
     { "html": "Faire en sorte que le nom de la photographie change à chaque passage de la boucle." }
   ],
   "steps": [
     { "html": "Pour utiliser notre système de repérage à chaque photographie, on va utiliser une boucle <strong>for</strong>. <br>Il faut donc faire : " },
-    { "python": "for i in range(0, 1000):" },
-    { "html": "La variable <strong>i</strong> prendra les valeurs de 0 à 999. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo" },
+    { "python": "for i in range(0, 571):" },
+    { "html": "La variable <strong>i</strong> prendra les valeurs de 0 à 570. Il faut donc concatener la valeur de <strong>i</strong> avec une chaine de caractère pour obtenir le nom de la photo" },
     { "python": "\"photos/photo{}.jpg\".format(i)" },
     { "html": "On aura donc : " },
-    { "python": "for i in range(0, 1000):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n  # latitude et longitude de la photo\n  lat = geolocalisation.latitude(photo)\n  lon = geolocalisation.longitude(photo)\n\n  # affiche les coordonnees si elles existent\n  if lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\n  else:\n    print(photo, lat, lon)\n    # si les coordonnees correspondent a Mayotte\n    if lat > -13.1 and lat < -12.5 and lon > 44.5 and lon < 45.5:\n      print(\"La photo {} est une photo de Mayotte\".format(photo))" }
+    { "python": "for i in range(0, 571):\n  photo = \"photos/photo{}.jpg\".format(index)\n\n  # latitude et longitude de la photo\n  lat = geolocalisation.latitude(photo)\n  lon = geolocalisation.longitude(photo)\n\n  # affiche les coordonnees si elles existent\n  if lat == None or lon == None:\n    print(photo, \"Pas de coordonnées géographiques pour cette photo.\")\n  else:\n    print(photo, lat, lon)\n    # si les coordonnees correspondent a Mayotte\n    if lat > -13.1 and lat < -12.5 and lon > 44.5 and lon < 45.5:\n      print(\"La photo {} est une photo de Mayotte\".format(photo))" }
   ]
 }, {
   "title": "Mission 5 : ",
   "subtitle": "Compter le nombre de photographies provenant de Mayotte",
-  "text": "Tout est dans le titre de la mission. Combien de photos parmi les 1000 ont été prises à Mayotte.",
+  "text": "Tout est dans le titre de la mission. Combien de photos parmi les 571 ont été prises à Mayotte.",
   "more": 23,
   "question": {
     "statement": "Alors, combien y a-t-il de photos prises à Mayotte ?",
