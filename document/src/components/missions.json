@@ -10,7 +10,7 @@
     { "html": "Importer le <strong>module</strong> geolocalisation" },
     { "html": "Visualiser son contenu" },
     { "html": "Appeler l'aide de la <strong>fonction</strong> latitude " },
-    { "html": "Afficher la latitude de la <strong>fonction</strong> la photographie <i>photo1.jpg</i>" }
+    { "html": "Afficher la latitude de la photographie <i>photo1.jpg</i>" }
   ],
   "steps": [
     { "html": "Pour utiliser l'<strong>interpréteur</strong> python" },
